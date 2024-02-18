@@ -12,7 +12,8 @@ import { LoginUserDto } from './dto/login-user.dto';
 import { AuthService } from 'src/auth/auth.service';
 import { User } from './entities/user.schema';
 import { WalletsService } from 'src/wallets/wallets.service';
-import { OrdersService } from 'src/orders/orders.service';
+import * as bcrypt from 'bcrypt';
+import { AppConstants } from 'src/utils/constants/app.constants';
 
 @Injectable()
 export class UsersService {
@@ -43,6 +44,14 @@ export class UsersService {
       if (isUsernameExists) {
         throw new BadRequestException('Username exists already');
       }
+      const hashedPassword = await bcrypt.hash(
+        registerUserDto.password,
+        AppConstants.SALT_ROUNDS,
+      );
+      Object.assign(registerUserDto, {
+        ...registerUserDto,
+        password: hashedPassword,
+      });
       const newUser: User = await this.create(registerUserDto);
       const userView = this.getUserView(newUser);
       return userView;

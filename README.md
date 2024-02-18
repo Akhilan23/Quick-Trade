@@ -1,79 +1,66 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
-
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
-
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
-
-## Description
-
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+# Quick Trade
 
 ## Installation
 
+#### 1. Install NestJS
+Install using ```npm i -g @nestjs/cli```. If already installed, run ```nest --version``` to confirm. Follow the steps from the below page for further help
+Reference: [https://docs.nestjs.com/](https://docs.nestjs.com/)
+
+#### 2. Install Redis
+Install using ```brew install redis```. Follow the steps from the below page based on your operating system for further help
+Reference: [Install Redis](https://redis.io/docs/install/install-redis/install-redis-on-mac-os/)
+
+#### 3. Install MongoDB
+Follow the steps from the below page based on your operating system for further help
+Reference: [Install MongoDB](https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-os-x/)
+
+## Running The App
+
+#### 1. Start MongoDB
+```bash
+$ brew services start mongodb-community@4.4
+```
+or
+```bash
+$ mongod --port 27017 --dbpath ~/data/db
+```
+
+#### 2. Start Redis
+```bash
+$ brew services start redis
+```
+
+#### 3. Install dependencies of the app
 ```bash
 $ npm install
 ```
 
-## Running the app
-
+#### 4. Run the app
 ```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+$ npm run dev
 ```
 
-## Test
+## Working With The App
 
-```bash
-# unit tests
-$ npm run test
+The user journey of the app is simple. 
+1. Register yourself as an user.
+2. Load your wallet with as much as amount you want. Every registered user, by default, has a wallet linked to their account.
+3. View all the stocks listed in the app. 2 seconds into start of app, some stocks & symbols will be loaded. Then, every 30 seconds, the stock data for the same stocks will be updated.
+4. Place your buy/sell orders.
+5. View your portfolio.
 
-# e2e tests
-$ npm run test:e2e
+## Technicalities
 
-# test coverage
-$ npm run test:cov
-```
+The problem statement is quite interesting & easy to get carried away with, to build a full-fledged stock exchange app. Spent some time trying to understand how a stock exchange system works in general.
 
-## Support
+While working with the framework & libraries were relatively easy, the main challenge was to come up with the solution for settling/squaring off sell orders as there were many algorithms like average/FIFO/LIFO, using which one can calculate the P/L at the time of selling. This app uses the average algorithm. Also, MongoDB is being used to store all the stock price change data every 30 seconds. Ideally, in a high-traffic scenario, it's better to store all this data in redis cache, saving loads of database calls.
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+Apart from that, JWT is being used for authentication. Though only a single access token with 60 minutes as ttl is being used, a better approach would be to refresh-token strategy. During logout scenario, since this is more of a server-side app, those tokens are stored in the redis as a blacklist.
 
-## Stay in touch
+## Stock Broker API Keys
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
-
-## AlphaVantage API Key
-20AV4079TKTYCPW2
-
-## Finnhub API Key
+### Finnhub API Key
 cn90tohr01qoee99d38gcn90tohr01qoee99d390
+
+### AlphaVantage API Key
+20AV4079TKTYCPW2

@@ -9,15 +9,16 @@ export class TasksService {
 
   constructor(private readonly stocksService: StocksService) {}
 
-  // @Timeout(5000)
-  // loadStocks() {
-  //   this.logger.debug('loading all stocks and symbols');
-  //   this.stocksService.loadStocks();
-  // }
+  @Timeout(2000)
+  async loadStocks() {
+    this.logger.debug('loading all stocks and symbols');
+    await this.stocksService.deleteAllData();
+    return this.stocksService.loadStocks();
+  }
 
   @Interval(AppConstants.FETCH_CALL_LATENCY)
   fetchData() {
     this.logger.debug('updating all stock data');
-    this.stocksService.updateData();
+    return this.stocksService.updateData();
   }
 }

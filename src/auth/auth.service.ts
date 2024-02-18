@@ -10,6 +10,7 @@ import { User } from 'src/users/entities/user.schema';
 import { JwtService } from '@nestjs/jwt';
 import { CACHE_MANAGER } from '@nestjs/cache-manager';
 import { Cache } from 'cache-manager';
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class AuthService {
@@ -27,13 +28,27 @@ export class AuthService {
     try {
       this.logger.log('request to validate user', { username });
       const user: User = await this.userService.findByUsername(username);
-      if (user && user.password == password) {
-        return user;
+      if (!user) {
+        throw new NotFoundException('Invalid username');
       }
-      throw new NotFoundException('Invalid username or password');
+      const isPasswordValid = await this.validatePassword(
+        password,
+        user.password,
+      );
+      if (!isPasswordValid) {
+        throw new NotFoundException('Invalid password');
+      }
+      return user;
     } catch (error) {
       throw error;
     }
+  }
+
+  async validatePassword(
+    password: string,
+    hashedPassword: string,
+  ): Promise<boolean> {
+    return bcrypt.compare(password, hashedPassword);
   }
 
   async login(username: string, password: string) {

@@ -7,6 +7,8 @@ export const AppConstants = {
   IS_STRATEGY_AVERAGE: true,
   FETCH_CALL_LATENCY: 30 * 1000,
   FINNHUB_TOKEN: 'cn90tohr01qoee99d38gcn90tohr01qoee99d390',
+  SALT_ROUNDS: 10,
+  HASH_SECRET: '',
 };
 
 export const JwtConstants = {

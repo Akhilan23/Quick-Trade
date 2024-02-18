@@ -1,0 +1,345 @@
+{
+	"info": {
+		"_postman_id": "029671fc-4eb9-4856-b6ba-83dc6e48711f",
+		"name": "CloudFiles",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "7198886",
+		"_collection_link": "https://crimson-trinity-36333.postman.co/workspace/Mine~14933409-d89a-4185-91ad-f6c423cd9a03/collection/7198886-029671fc-4eb9-4856-b6ba-83dc6e48711f?action=share&source=collection_link&creator=7198886"
+	},
+	"item": [
+		{
+			"name": "App - Delete All Data",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BaseURL}}/delete",
+					"host": [
+						"{{BaseURL}}"
+					],
+					"path": [
+						"delete"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Users - Register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"firstName\": \"Akhilan S\",\n    \"lastName\": \"\",\n    \"email\": \"s.akhilan96@gmail.com\",\n    \"username\": \"akhilan96\",\n    \"password\": \"Akhilan@23\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BaseURL}}/users/register",
+					"host": [
+						"{{BaseURL}}"
+					],
+					"path": [
+						"users",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Users - Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"akhilan96\",\n    \"password\": \"Akhilan@23\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BaseURL}}/users/login",
+					"host": [
+						"{{BaseURL}}"
+					],
+					"path": [
+						"users",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Users - View",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BaseURL}}/users/view",
+					"host": [
+						"{{BaseURL}}"
+					],
+					"path": [
+						"users",
+						"view"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Users - Logout",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{BaseURL}}/users/logout",
+					"host": [
+						"{{BaseURL}}"
+					],
+					"path": [
+						"users",
+						"logout"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Wallets - Deposit",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"amount\": 100000\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BaseURL}}/wallets/deposit",
+					"host": [
+						"{{BaseURL}}"
+					],
+					"path": [
+						"wallets",
+						"deposit"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Wallets - Withdraw",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"amount\": 100\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BaseURL}}/wallets/withdraw",
+					"host": [
+						"{{BaseURL}}"
+					],
+					"path": [
+						"wallets",
+						"withdraw"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Stocks - Populate",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{BaseURL}}/stocks/populate",
+					"host": [
+						"{{BaseURL}}"
+					],
+					"path": [
+						"stocks",
+						"populate"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Stocks - List",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BaseURL}}/stocks/list",
+					"host": [
+						"{{BaseURL}}"
+					],
+					"path": [
+						"stocks",
+						"list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Orders - Create (Buy)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"stockSymbol\": \"AMZN\",\n    \"type\": \"buy\",\n    \"quantity\": 20\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BaseURL}}/orders/create",
+					"host": [
+						"{{BaseURL}}"
+					],
+					"path": [
+						"orders",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Orders - Create (Sell)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"stockSymbol\": \"AMZN\",\n    \"type\": \"sell\",\n    \"quantity\": 26\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BaseURL}}/orders/create",
+					"host": [
+						"{{BaseURL}}"
+					],
+					"path": [
+						"orders",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Orders - View",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BaseURL}}/orders/:orderId",
+					"host": [
+						"{{BaseURL}}"
+					],
+					"path": [
+						"orders",
+						":orderId"
+					],
+					"variable": [
+						{
+							"key": "orderId",
+							"value": "65d21f7496109cae6eec94d2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Holdings - View",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BaseURL}}/holdings/view",
+					"host": [
+						"{{BaseURL}}"
+					],
+					"path": [
+						"holdings",
+						"view"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{AccessToken}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "BaseURL",
+			"value": "http://localhost:3001/v1",
+			"type": "string"
+		},
+		{
+			"key": "AccessToken",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWQwMzQ0Njg2YmFhYWJkYWNkZDMzNTAiLCJ1c2VybmFtZSI6ImFraGlsYW45NiIsImlhdCI6MTcwODE1NzY2NywiZXhwIjoxNzA4MTYxMjY3fQ.8EOeOM9fmkPbQqf3-_nI0AYUG3ZviWPZbDK5cZyrXig"
+		}
+	]
+}
